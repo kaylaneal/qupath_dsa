@@ -1,0 +1,10 @@
+{
+
+    "PixelClass" : {
+        "type": "python"
+    },
+
+    "TissueDetect" : {
+        "type": "python"
+    }
+}
