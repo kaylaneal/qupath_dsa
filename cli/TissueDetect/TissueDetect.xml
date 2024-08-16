@@ -27,22 +27,20 @@
             <default>-1,-1,-1,-1</default>
         </region>
 
-        <image fileExtensions=".tiff" reference="inputImageFile">
+        <image fileExtensions=".png" reference="inputImageFile">
             <name>outputLabelImage</name>
             <label>Output Label Image</label>
             <description>Tissue mask of image</description>
             <channel>output</channel>
-            <!-- <longflag>outputLabelImage</longflag> -->
-            <index>1</index>
+            <!-- <index>1</index> -->
+            <longflag>outputLabelImage</longflag>
         </image>
-        
         <file fileExtensions=".json" reference="inputImageFile">
             <name>outputAnnotationFile</name>
             <label>Image Annotation File</label>
             <description>Annotation to relate the image to the source (*.anot)</description>
             <channel>output</channel>
-            <!-- <longflag>outputAnnotationFile</longflag> -->
-            <index>2</index>
+            <longflag>outputAnnotationFile</longflag>
         </file>
 
     </parameters>

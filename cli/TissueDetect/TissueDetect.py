@@ -15,13 +15,15 @@ def main(args):
     
     print("\n *** Run QuPath Script: *** \n")
 
+
     subprocess.run([
         "./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath", 
         "script", "TissueDetect/TissueDetect.groovy", 
         "--image", args.inputImageFile, 
         "-a", args.outputAnnotationFile,
         "-a", args.outputLabelImage,
-        ])
+    ])
+
 
 if __name__ == "__main__":
     main(CLIArgumentParser().parse_args())

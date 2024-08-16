@@ -1,6 +1,7 @@
 // https://forum.image.sc/t/how-to-create-a-pixel-classification-thresholder-entirely-using-groovy-script-in-qupath/72333
 import static qupath.lib.gui.scripting.QPEx.*
 import qupath.lib.io.GsonTools
+import qupath.lib.images.writers.ImageWriterTools
 import qupath.lib.images.servers.LabeledImageServer
 
 // Script Arguments:
@@ -29,13 +30,14 @@ def cal = server.getPixelCalibration()
 def res = cal.createScaledInstance(downsample, downsample)
 
 // Create + Apply Thresholder:
-def thresholder = qupath.opencv.ml.pixel.PixelClassifiers.createThresholdClassifier(res, channel, threshold, below, above)
+def json = new File("../classifiers/tissueDetect.json").text
+def thresholder = GsonTools.getInstance(true).fromJson(json, qupath.lib.classifiers.pixel.PixelClassifier.class)
+// def thresholder = qupath.opencv.ml.pixel.PixelClassifiers.createThresholdClassifier(res, channel, threshold, below, above)
 createAnnotationsFromPixelClassifier(thresholder, minArea, minHoleArea)
 
 // Export Annotations + Image -- https://qupath.readthedocs.io/en/stable/docs/advanced/exporting_annotations.html
 def annotations = getAnnotationObjects()
 exportObjectsToGeoJson(annotations, annotationFilePath)
-// exportObjectsToGeoJson(annotations, annotationFilePath, "FEATURE_COLLECTION")
 
 def labelServer = new LabeledImageServer.Builder(imageData)
     .backgroundLabel(0, ColorTools.WHITE)
@@ -43,5 +45,6 @@ def labelServer = new LabeledImageServer.Builder(imageData)
     .addLabel('Tissue', 1)
     .multichannelOutput(false)
     .build()
+println "labelServer built"
 
-writeImage(labelServer, annotationImagePath)
+ImageWriterTools.writeImage(labelServer, annotationImagePath)
