@@ -26,15 +26,7 @@
             <longflag>analysis_roi</longflag>
             <default>-1,-1,-1,-1</default>
         </region>
-
-        <image fileExtensions=".png" reference="inputImageFile">
-            <name>outputLabelImage</name>
-            <label>Output Label Image</label>
-            <description>Tissue mask of image</description>
-            <channel>output</channel>
-            <!-- <index>1</index> -->
-            <longflag>outputLabelImage</longflag>
-        </image>
+      
         <file fileExtensions=".json" reference="inputImageFile">
             <name>outputAnnotationFile</name>
             <label>Image Annotation File</label>

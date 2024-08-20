@@ -3,6 +3,12 @@ import subprocess
 
 from histomicstk.cli.utils import CLIArgumentParser
 
+'''
+
+Export Annotations Created by Pixel Threshold Classifier
+- Annotation = Tissue Area Calculated via Selected Thresholder
+
+'''
 def main(args):
     print('\n *** CLI Parameters: *** \n')
     print(args)
@@ -15,13 +21,11 @@ def main(args):
     
     print("\n *** Run QuPath Script: *** \n")
 
-
     subprocess.run([
         "./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath", 
         "script", "TissueDetect/TissueDetect.groovy", 
         "--image", args.inputImageFile, 
         "-a", args.outputAnnotationFile,
-        "-a", args.outputLabelImage,
     ])
 
 

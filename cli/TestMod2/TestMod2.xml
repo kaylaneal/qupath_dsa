@@ -2,8 +2,8 @@
 <executable>
 
     <category>QuPath DSA</category>
-    <title>Image Metadata</title>
-    <description>Retrieve image metadata</description>
+    <title>Testing Module</title>
+    <description>Sandbox to try different things without breaking what finally actually works</description>
     <version>0.1.0</version>
 
     <parameters>
@@ -15,9 +15,17 @@
             <name>inputImageFile</name>
             <label>Input Image</label>
             <description>Input image</description>
-            <channel>input</channel>
             <index>0</index>
+            <channel>input</channel>
         </image>
+
+        <file fileExtensions=".json">
+            <name>inputThresholderFile</name>
+            <label>Threshold Model</label>
+            <channel>input</channel>
+            <index>1</index>
+            <description>json file describing the thresholding model to use</description>
+        </file>
 
         <region>
             <name>analysis_roi</name>
@@ -27,7 +35,7 @@
             <default>-1,-1,-1,-1</default>
         </region>
 
-        <file fileExtensions=".txt" reference="inputImageFile">
+        <file fileExtensions=".json" reference="inputImageFile">
             <name>outputTextFile</name>
             <label>Output File</label>
             <description>Image Metadata</description>
