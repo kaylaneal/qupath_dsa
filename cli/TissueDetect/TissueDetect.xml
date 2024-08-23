@@ -19,6 +19,14 @@
             <index>0</index>
         </image>
 
+        <file fileExtensions=".json">
+            <name>inputThresholderFile</name>
+            <label>Threshold Model</label>
+            <channel>input</channel>
+            <index>1</index>
+            <description>json file describing the thresholding model to use</description>
+        </file>
+
         <region>
             <name>analysis_roi</name>
             <label>Analysis ROI</label>

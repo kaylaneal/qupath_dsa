@@ -36,11 +36,11 @@
         </region>
 
         <file fileExtensions=".json" reference="inputImageFile">
-            <name>outputTextFile</name>
-            <label>Output File</label>
-            <description>Image Metadata</description>
-            <longflag>output_file</longflag>
+            <name>outputAnnotationFile</name>
+            <label>Image Annotation File</label>
+            <description>Annotation to relate the image to the source (*.anot)</description>
             <channel>output</channel>
+            <longflag>outputAnnotationFile</longflag>
         </file>
 
     </parameters>

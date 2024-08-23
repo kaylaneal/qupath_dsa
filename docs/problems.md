@@ -29,9 +29,14 @@ In each program, arguments defined by the XML script and inputted through the DS
     - There was likely a memory issue with the size of image the script was trying to create -- and it was an unnecessary image to create! That output expectation was removed entirely.
 
 
-##
+## Slicer CLI Failure to Load Docker Image
 - **Example**:
+Started to Load Docker images
+FAILURE: Error with recently loading pre-existing image qupath-dsa:latest
+Error getting qupath-dsa:latest cli data from image Attempt to docker run qupath-dsa:latest ['TestMod2', '--xml'] failed (image name: qupath-dsa:latest ) (image name: None )
+Finished caching Docker image data
 
 - **Problem + Next Steps**:
+    - Run `docker run qupath-dsa:latest TestMod2 --xml` locally to see where error occurs.
+    - Does *not* mean the XML file is where the problem is
 
-- **Solutions**:

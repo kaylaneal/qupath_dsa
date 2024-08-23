@@ -28,7 +28,7 @@ def main(args):
     print('\n *** CLI Parameters: *** \n', args)
     
     use_roi = False if np.all(args.analysis_roi == -1) else True
-    # print(f'\n *** Use ROI? {"yes" if use_roi else "no"}. *** \n')
+    print(f'\n *** Use ROI? {"Yes" if use_roi else "No"}. *** \n')
 
     print("\n *** Run QuPath Script: *** \n")
 
@@ -36,20 +36,20 @@ def main(args):
         roi = ','.join( map( str, args.analysis_roi ) )
         subprocess.check_output([
             "./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath", 
-            "script", "TestMod2/TestMod2.groovy", 
+            "script", "TestMod/TestMod.groovy", 
             "--image", args.inputImageFile,
             "-a", args.inputThresholderFile,
-            "-a", args.outputTextFile,
+            "-a", args.outputAnnotationFile,
             "-a", roi
         ])
     
     else:
          subprocess.check_output([
             "./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath", 
-            "script", "TestMod2/TestMod2.groovy", 
+            "script", "TestMod/TestMod.groovy", 
             "--image", args.inputImageFile,
             "-a", args.inputThresholderFile,
-            "-a", args.outputTextFile
+            "-a", args.outputAnnotationFile
         ])
 
 

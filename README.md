@@ -21,3 +21,9 @@ Scripts may have file input requirements:
     - Pixel Classifier used in TissueDetect is saved in [classifiers](/classifiers/) folder 
 - on DSA: necessary files should be saved on the DSA directly
     - currently: uploaded the classifiers folder under the Admin user account, selectable from HistomicsUI window
+
+
+## Helpful Links from Development:
+- https://cmilab.nephrology.medicine.ufl.edu/wordpress/files/2023/10/creating-a-plugin.pdf
+- https://www.slicer.org/w/index.php?title=Documentation/Nightly/Developers/SlicerExecutionModel#XML_Schema
+- https://github.com/DigitalSlideArchive/HistomicsUI/tree/master

@@ -4,7 +4,8 @@ import qupath.lib.io.GsonTools
 
 // Script Arguments:
 println "$args"
-def annotationFilePath = args[0]
+def annotationFilePath = args[1]
+def json = new File(args[0]).text
 
 // Current Image:
 def imageData = getCurrentImageData()
@@ -14,7 +15,6 @@ def server = imageData.getServer()
 double minArea = 0
 double minHoleArea = 0
 
-def json = new File("../classifiers/tissueDetect.json").text
 def thresholder = GsonTools.getInstance(true).fromJson(json, qupath.lib.classifiers.pixel.PixelClassifier.class)
 
 createAnnotationsFromPixelClassifier(thresholder, minArea, minHoleArea)
