@@ -6,5 +6,9 @@
 
     "TissueDetect" : {
         "type": "python"
+    },
+
+    "QuPath" : {
+        "type": "python"
     }
 }

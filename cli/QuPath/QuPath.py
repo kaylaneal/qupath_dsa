@@ -1,5 +1,6 @@
 import os
 import subprocess
+import numpy as np
 
 from histomicstk.cli import utils
 
@@ -16,7 +17,7 @@ def validate_args(args):
     elif not os.path.isfile(args.inputModelFile):
         raise OSError("Model file does not exist.")
     
-    elif not os.path.isfile(args.inputGroovyScript):
+    elif not os.path.isfile(args.inputGroovyFile):
         raise OSError("Groovy Script does not exist.")
     
     elif len(args.analysis_roi) != 4:
@@ -29,13 +30,30 @@ def main(args):
     print('\n ** CLI Arguments: ** \n', args)
     validate_args(args)
 
-    subprocess.check_call([
-        "./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath", 
-        "script", args.inputGroovyScript,
-        "--image", args.inputImageFile,
-        "-a", args.inputModelFile,
-        "-a", args.outputAnnotationFile
-    ])
+    use_roi = False if np.all( np.array( args.analysis_roi ) == -1 ) else True
+    print(f'\n ** Use ROI? {"Yes" if use_roi else "No"}. ** \n')
+
+    print('\n ** Run QuPath Script: ** \n')
+
+    if use_roi:
+        roi = ','.join( map( str, args.analysis_roi ) )
+        subprocess.check_output([
+            "./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath", 
+            "script", args.inputGroovyFile,
+            "--image", args.inputImageFile,
+            "-a", args.inputModelFile,
+            "-a", args.outputAnnotationFile,
+            "-a", roi
+        ])
+
+    else:
+        subprocess.check_output([
+            "./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath", 
+            "script", args.inputGroovyFile,
+            "--image", args.inputImageFile,
+            "-a", args.inputModelFile,
+            "-a", args.outputAnnotationFile
+        ])
 
 if __name__ == "__main__":
     main(utils.CLIArgumentParser().parse_args())

@@ -40,3 +40,10 @@ Finished caching Docker image data
     - Run `docker run qupath-dsa:latest TestMod2 --xml` locally to see where error occurs.
     - Does *not* mean the XML file is where the problem is
 
+## ROI Annotation Returned, Classifier Annotations Not
+- **Example**:
+    - Running TissueDetect with ROI specified -- the defined analysis ROI is returned but the results from the thresholder are not. 
+
+- **Problem + Solution**:
+    - Multiple Annotations from QuPath need to be specified as a Feature Collection otherwise only the first annotation is considered.
+        - https://qupath.readthedocs.io/en/stable/docs/advanced/exporting_annotations.html

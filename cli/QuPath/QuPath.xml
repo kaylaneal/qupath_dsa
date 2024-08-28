@@ -1,52 +1,53 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <executable>
 
-    <category>QuPath DSA Module</category>
-    <title>QuPath</title>
-    <description>QuPath accessible for any uploaded script</description>
+    <category>QuPath DSA</category>
+    <title>Testing Module</title>
+    <description>Sandbox to try different things without breaking what finally actually works</description>
     <version>0.1.0</version>
 
     <parameters>
+
         <label>IO</label>
-        <description>Define Input/Output Parameters</description>
+        <description>Input/Output Parameters</description>
 
         <image>
             <name>inputImageFile</name>
             <label>Input Image</label>
-            <description>Input image.</description>
+            <description>Input image</description>
             <index>0</index>
             <channel>input</channel>
         </image>
 
         <file fileExtensions=".groovy">
-            <name>inputGroovyScript</name>
-            <label>Groovy Script</label>
-            <description>Groovy script for QuPath.</description>
-            <index>1</index>
+            <name>inputGroovyFile</name>
+            <label>Groovy File</label>
             <channel>input</channel>
+            <index>1</index>
+            <description>Groovy script file</description>
         </file>
 
         <file fileExtensions=".json">
             <name>inputModelFile</name>
-            <label>Model File</label>
-            <description>JSON file describing thresholder/model/classifier/etc. to be used in script.</description>
-            <index>2</index>
+            <label>Model</label>
             <channel>input</channel>
+            <index>2</index>
+            <description>json file describing the model to use</description>
         </file>
 
         <region>
             <name>analysis_roi</name>
             <label>Analysis ROI</label>
-            <description>Region of Interest (ROI) for analysis. Must be a 4 element vector in the format: (left, top, width, height). Defaults to entire image.</description>
+            <description>Region of Interest (ROI) for analysis. Must be a 4 element vector in the format: (left, top, width, height). Default value is the entire image.</description>
             <longflag>analysis_roi</longflag>
             <default>-1,-1,-1,-1</default>
         </region>
 
         <file fileExtensions=".json" reference="inputImageFile">
             <name>outputAnnotationFile</name>
-            <label>Output File</label>
-            <description>Annoations</description>
-            <channel>output<channel>
+            <label>Image Annotation File</label>
+            <description>Annotation to relate the image to the source (*.anot)</description>
+            <channel>output</channel>
             <longflag>outputAnnotationFile</longflag>
         </file>
 
@@ -113,4 +114,5 @@
         </integer>
 
     </parameters>
+
 </executable>
