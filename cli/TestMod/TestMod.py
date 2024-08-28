@@ -27,7 +27,7 @@ def main(args):
     validate_args(args)
     print('\n *** CLI Parameters: *** \n', args)
     
-    use_roi = False if np.all(args.analysis_roi == -1) else True
+    use_roi = False if np.all(np.array(args.analysis_roi) == -1) else True
     print(f'\n *** Use ROI? {"Yes" if use_roi else "No"}. *** \n')
 
     print("\n *** Run QuPath Script: *** \n")
@@ -58,4 +58,4 @@ if __name__ == "__main__":
     main(utils.CLIArgumentParser().parse_args())
 
 
-# LOCAL TEST RUN: ./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath script TestMod/TestMod.groovy --image ../60.svs -a ../classifiers/tissueDetect.json -a ../60a.json -a 1176,7538,2008,19213
+# LOCAL TEST RUN: ./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath script TestMod/TestMod.groovy --image ../60.svs -a ../classifiers/tissueDetect.json -a ../60a.json -a 1744,8290,18917,17937
