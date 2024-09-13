@@ -27,3 +27,4 @@ Scripts may have file input requirements:
 - https://cmilab.nephrology.medicine.ufl.edu/wordpress/files/2023/10/creating-a-plugin.pdf
 - https://www.slicer.org/w/index.php?title=Documentation/Nightly/Developers/SlicerExecutionModel#XML_Schema
 - https://github.com/DigitalSlideArchive/HistomicsUI/tree/master
+- https://qupath.github.io/javadoc/docs/index.html

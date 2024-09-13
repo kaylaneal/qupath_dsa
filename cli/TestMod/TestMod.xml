@@ -19,12 +19,20 @@
             <channel>input</channel>
         </image>
 
-        <file fileExtensions=".json">
-            <name>inputThresholderFile</name>
-            <label>Threshold Model</label>
+        <file fileExtensions=".groovy">
+            <name>inputGroovyFile</name>
+            <label>Groovy File</label>
             <channel>input</channel>
             <index>1</index>
-            <description>json file describing the thresholding model to use</description>
+            <description>Groovy script file</description>
+        </file>
+
+        <file fileExtensions=".json">
+            <name>inputModelFile</name>
+            <label>Model</label>
+            <channel>input</channel>
+            <index>2</index>
+            <description>json file describing the model to use</description>
         </file>
 
         <region>
@@ -35,75 +43,24 @@
             <default>-1,-1,-1,-1</default>
         </region>
 
+        <string-enumeration>
+            <name>outputOptions</name>
+            <longflag>outputOptions</longflag>
+            <description>Check option for that form of output file</description>
+            <label>Additional Output File Options</label>
+            <default>None</default>
+            <element>None</element>
+            <element>Image</element>
+            <element>Text</element>
+        </string-enumeration>
+
         <file fileExtensions=".json" reference="inputImageFile">
             <name>outputAnnotationFile</name>
             <label>Image Annotation File</label>
-            <description>Annotation to relate the image to the source (*.anot)</description>
+            <description>Annotation to relate the image to the source (*.json)</description>
             <channel>output</channel>
             <longflag>outputAnnotationFile</longflag>
         </file>
-
-    </parameters>
-
-    <parameters advanced = "true">
-
-        <label>WSI Analysis</label>
-        <description>Whole Slide Image (WSI) Analysis Parameters</description>
-
-        <double>
-            <name>analysis_tile_size</name>
-            <label>Analysis Tile Size</label>
-            <description>Tile Size for blockwise analysis. Default: 1024.</description>
-            <longflag>analysis_tile_size</longflag>
-            <default>1024</default>
-        </double>
-
-        <double>
-            <name>analysis_mag</name>
-            <label>Analysis Magnification</label>
-            <description>The magnification at which the analysis should be performed. Default: 10</description>
-            <longflag>analysis_mag</longflag>
-            <default>10</default>
-        </double>
-
-        <double>
-            <name>min_fgnd_frac</name>
-            <label>Minimum Foreground Fraction</label>
-            <description>The minimum amount of foreground that must be present in tile for it to be analyzed. Default: 0.25</description>
-            <longflag>min_fgnd_frac</longflag>
-            <default>0.25</default>
-        </double>
-
-    </parameters>
-
-    <parameters advanced = "true">
-
-        <label>Dask</label>
-        <description>Dask Parameters</description>
-
-        <string>
-            <name>scheduler</name>
-            <label>Scheduler Address</label>
-            <description>Address of a dask scheduler in the format "127.0.0.1:8786". Not passing this parameter sets up a dask cluster on the local machine. 'multiprocessing' uses Python multiprocessing. 'multithreading' uses Python multiprocessing in threaded mode.</description>
-            <longflag>scheduler</longflag>
-            <default />
-        </string>
-
-        <integer>
-            <name>num_workers</name>
-            <label>Number of Workers</label>
-            <description>Number of dask workers to start while setting up local cluster internally. If a negative value is specified then the number of workers is set to number of CPU cores on the machine minus the number of workers specified.</description>
-            <longflag>num_workers</longflag>
-            <default>-1</default>
-        </integer>
-
-        <integer>
-            <name>num_threads_per_worker</name>
-            <label>Number of Threads per Worker</label>
-            <description>Number of threads to use per worker while setting up a local cluster internally. Must be a positive integer >= 1.</description>
-            <longflag>num_threads_per_worker</longflag>
-            <default>1</default>
-        </integer>
 
     </parameters>
 

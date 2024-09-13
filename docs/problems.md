@@ -47,3 +47,10 @@ Finished caching Docker image data
 - **Problem + Solution**:
     - Multiple Annotations from QuPath need to be specified as a Feature Collection otherwise only the first annotation is considered.
         - https://qupath.readthedocs.io/en/stable/docs/advanced/exporting_annotations.html
+
+
+## XML Schema Troubleshooting
+- Slicer CLI Schema Documentation: https://www.slicer.org/wiki/Documentation/Nightly/Developers/SlicerExecutionModel#XML_Schema
+- **flag/longflag vs index parameters?**
+    - Mark optional parameters with `<flag></flag>` and `<longflag></longflag>`
+    - Required parameters use `<index></index>`

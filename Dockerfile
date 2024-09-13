@@ -28,7 +28,7 @@ RUN apt-get update && \
 ## LOCATION qp_dsa_plugin/qpbin
 
 # Install HistomicsTK ( for HistomicsUI communication )
-RUN pip install histomicstk --find-links https://girder.github.io/large_image_wheels
+RUN pip install histomicstk --find-links https://girder.github.io/large_image_wheels --prefer-binary
 
 WORKDIR /qp_dsa_plug/cli
 

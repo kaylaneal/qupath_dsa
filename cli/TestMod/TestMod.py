@@ -14,8 +14,11 @@ def validate_args(args):
     if not os.path.isfile(args.inputImageFile):
         raise OSError("Input image file does not exist.")
     
-    elif not os.path.isfile(args.inputThresholderFile):
-        raise OSError("Threshold model file does not exist.")
+    elif not os.path.isfile(args.inputModelFile):
+        raise OSError("Model file does not exist.")
+    
+    elif not os.path.isfile(args.inputGroovyFile):
+        raise OSError("Groovy Script does not exist.")
     
     elif len(args.analysis_roi) != 4:
         raise ValueError("Analysis ROI must be a vector of 4 elements.")
@@ -30,26 +33,38 @@ def main(args):
     use_roi = False if np.all(np.array(args.analysis_roi) == -1) else True
     print(f'\n *** Use ROI? {"Yes" if use_roi else "No"}. *** \n')
 
+    add_output = args.outputOptions
+    print(f'\n *** Additional Output File(s) {add_output} ***\n')
+
+    if add_output == 'Image':
+        output_path = os.path.dirname(args.outputAnnotationFile) + '/testMod' + add_output + '.jpg'
+    elif add_output == 'Text':
+        output_path = os.path.dirname(args.outputAnnotationFile) + '/testMod' + add_output + '.txt'
+    else:
+        output_path = ''
+
     print("\n *** Run QuPath Script: *** \n")
 
     if use_roi:
         roi = ','.join( map( str, args.analysis_roi ) )
-        subprocess.check_output([
+        subprocess.run([
             "./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath", 
-            "script", "TestMod/TestMod.groovy", 
+            "script", args.inputGroovyFile,
             "--image", args.inputImageFile,
-            "-a", args.inputThresholderFile,
+            "-a", args.inputModelFile,
             "-a", args.outputAnnotationFile,
+            "-a", output_path,
             "-a", roi
         ])
-    
+
     else:
-         subprocess.check_output([
+        subprocess.run([
             "./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath", 
-            "script", "TestMod/TestMod.groovy", 
+            "script", args.inputGroovyFile,
             "--image", args.inputImageFile,
-            "-a", args.inputThresholderFile,
-            "-a", args.outputAnnotationFile
+            "-a", args.inputModelFile,
+            "-a", args.outputAnnotationFile,
+            "-a", output_path
         ])
 
 

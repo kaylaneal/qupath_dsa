@@ -37,22 +37,24 @@ def main(args):
 
     if use_roi:
         roi = ','.join( map( str, args.analysis_roi ) )
-        subprocess.check_output([
+        subprocess.run([
             "./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath", 
             "script", args.inputGroovyFile,
             "--image", args.inputImageFile,
             "-a", args.inputModelFile,
             "-a", args.outputAnnotationFile,
+            # "-a", args.outputImageFile,
             "-a", roi
         ])
 
     else:
-        subprocess.check_output([
+        subprocess.run([
             "./../qpbin/QuPath-v0.5.1-Linux/QuPath/bin/QuPath", 
             "script", args.inputGroovyFile,
             "--image", args.inputImageFile,
             "-a", args.inputModelFile,
-            "-a", args.outputAnnotationFile
+            "-a", args.outputAnnotationFile,
+            # "-a", args.outputImageFile
         ])
 
 if __name__ == "__main__":
