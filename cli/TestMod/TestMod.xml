@@ -31,7 +31,7 @@
             <name>inputModelFile</name>
             <label>Model</label>
             <channel>input</channel>
-            <index>2</index>
+            <longflag>inputModelFile</longflag>
             <description>json file describing the model to use</description>
         </file>
 
@@ -43,23 +43,20 @@
             <default>-1,-1,-1,-1</default>
         </region>
 
-        <string-enumeration>
-            <name>outputOptions</name>
-            <longflag>outputOptions</longflag>
-            <description>Check option for that form of output file</description>
-            <label>Additional Output File Options</label>
-            <default>None</default>
-            <element>None</element>
-            <element>Image</element>
-            <element>Text</element>
-        </string-enumeration>
-
         <file fileExtensions=".json" reference="inputImageFile">
             <name>outputAnnotationFile</name>
             <label>Image Annotation File</label>
             <description>Annotation to relate the image to the source (*.json)</description>
             <channel>output</channel>
             <longflag>outputAnnotationFile</longflag>
+        </file>
+
+        <file fileExtensions=".json" reference="inputImageFile">
+            <name>outputItemMetadata</name>
+            <label>Image Metadata File</label>
+            <channel>output</channel>
+            <description>Image Metadata (*.txt)</description>
+            <longflag>outputItemMetadata</longflag>
         </file>
 
     </parameters>

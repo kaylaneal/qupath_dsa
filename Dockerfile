@@ -1,7 +1,16 @@
 # build docker image from nvidia/cuda image with CUDA 11.0
 FROM nvidia/cuda:11.0.3-cudnn8-runtime-ubuntu20.04
 
-## SET UP ##
+
+# INSTALLS
+RUN apt-get update && \
+    apt-get install -y binutils git python3-pip memcached
+
+# QuPath Linux App Downloaded from https://github.com/qupath/qupath/releases/tag/v0.5.1
+## LOCATION qp_dsa_plugin/qpbin
+
+# Install HistomicsTK ( for HistomicsUI communication )
+RUN pip install histomicstk --find-links https://girder.github.io/large_image_wheels --prefer-binary
 
 # Working Directory / Environment:
 ADD . /qp_dsa_plug
@@ -19,16 +28,6 @@ LABEL com.nvidia.volumes.needed=nvidia_driver
 
 LABEL "name"="qp_dsa_plugin"
 LABEL "description"="QuPath Digital Slide Archive (DSA) CLI Plugin"
-
-# # INSTALLS
-RUN apt-get update && \
-    apt-get install -y binutils git python3-pip memcached
-
-# QuPath Linux App Downloaded from https://github.com/qupath/qupath/releases/tag/v0.5.1
-## LOCATION qp_dsa_plugin/qpbin
-
-# Install HistomicsTK ( for HistomicsUI communication )
-RUN pip install histomicstk --find-links https://girder.github.io/large_image_wheels --prefer-binary
 
 WORKDIR /qp_dsa_plug/cli
 

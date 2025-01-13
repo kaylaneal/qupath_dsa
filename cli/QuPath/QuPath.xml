@@ -12,7 +12,7 @@
         <description>Input/Output Parameters</description>
 
         <image>
-            <name>inputImageFile</name>
+            <name>input_image</name>
             <label>Input Image</label>
             <description>Input image</description>
             <index>0</index>
@@ -20,7 +20,7 @@
         </image>
 
         <file fileExtensions=".groovy">
-            <name>inputGroovyFile</name>
+            <name>input_script</name>
             <label>Groovy File</label>
             <channel>input</channel>
             <index>1</index>
@@ -31,7 +31,7 @@
             <name>inputModelFile</name>
             <label>Model</label>
             <channel>input</channel>
-            <index>2</index>
+            <longflag>input_model</longflag>
             <description>json file describing the model to use</description>
         </file>
 
@@ -43,23 +43,22 @@
             <default>-1,-1,-1,-1</default>
         </region>
 
-        <file fileExtensions=".json" reference="inputImageFile">
+        <file fileExtensions=".json" reference="input_image">
             <name>outputAnnotationFile</name>
             <label>Image Annotation File</label>
             <description>Annotation to relate the image to the source (*.json)</description>
             <channel>output</channel>
-            <longflag>outputAnnotationFile</longflag>
+            <longflag>output_annotation</longflag>
         </file>
-<!--
-        <image>
-            <name>outputImageFile</name>
-            <label>Output Image File</label>
+
+        <file fileExtensions=".json" reference="input_image">
+            <name>outputItemMetadata</name>
+            <label>Image Metadata File</label>
             <channel>output</channel>
-            <description>Output Image</description>
-            <longflag>outputImageFile</longflag>
-            <flag>oif</flag>
-        </image>
--->
+            <description>Image Metadata</description>
+            <longflag>output_metadata</longflag>
+        </file>
+
     </parameters>
 
 </executable>

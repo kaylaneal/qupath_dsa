@@ -1,0 +1,162 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<executable>
+
+    <category>QuPath DSA</category>
+    <title>Cell Detection</title>
+    <description>Detect cells in a specific region of a Whole-Slide Image (WSI)</description>
+    <version>0.1.0</version>
+    <contributor>Kayla Neal (Pearce Lab @ Pitt)</contributor>
+
+       <parameters>
+
+        <label>IO</label>
+        <description>Input/Output Parameters</description>
+
+        <image>
+            <name>input_image</name>
+            <label>Input Image</label>
+            <description>Input image</description>
+            <channel>input</channel>
+            <index>0</index>
+        </image>
+
+        <region>
+            <name>analysis_roi</name>
+            <label>Analysis ROI</label>
+            <description>Region of Interest (ROI) for analysis. Must be a 4 element vector in the format: (left, top, width, height). Default value is the entire image.</description>
+            <index>1</index>
+            <default>-1,-1,-1,-1</default>
+        </region>
+      
+        <file fileExtensions=".json" reference="input_image">
+            <name>outputAnnotationFile</name>
+            <label>Image Annotation File</label>
+            <description>Annotation to relate the image to the source.</description>
+            <channel>output</channel>
+            <longflag>outputAnnotationFile</longflag>
+        </file>
+
+    </parameters>
+
+    <parameters>
+
+        <label>Cell Detection Model</label>
+        <description>Cell Detection Model Parameters</description>
+
+        <double>
+            <name>requestedPixelSize</name>
+            <label>Requested Pixel Size in Microns</label>
+            <description>Pixel size at which detection will be performed. Higher values likely to be faster, but may be less accurate.</description>
+            <channel>input</channel>
+            <longflag>pixel_size</longflag>
+            <default>0.5</default>
+        </double>
+
+        <double>
+            <name>backgroundRadius</name>
+            <label>Background Radius in Microns</label>
+            <description>Radius for background estimation. Should be greater than the largest nuclei radius. Values less than or equal to 0 will turn off backgound subtraction</description>
+            <channel>input</channel>
+            <longflag>bg_radius</longflag>
+            <default>8</default>
+        </double>
+
+        <string-enumeration>
+            <name>backgroundByReconstruction</name>
+            <label>Use Opening-by-Reconstruction for Background Estimation?</label>
+            <description>Using Opening-by-Reconstruction tends to give 'better' backgound estimates because it encorporates more information across the image tile used for cell detection.</description>
+            <channel>input</channel>
+            <longflag>bg_reconstruction</longflag>
+            <default>true</default>
+            <element>true</element>
+            <element>false</element>
+        </string-enumeration>
+
+        <double>
+            <name>medianRadius</name>
+            <label>Median Radius in Microns</label>
+            <description>Radius of median filter used to reduce image texture.</description>
+            <channel>input</channel>
+            <longflag>med_radius</longflag>
+            <default>0</default>
+        </double>
+
+        <double>
+            <name>sigma</name>
+            <label>Sigma in Microns</label>
+            <description>Sigma value of Gaussian filter used to reduce noise. Increasing the value stops nuclei from being fragmented but may reduce accuracy of boundaries</description>
+            <channel>input</channel>
+            <longflag>sigma</longflag>
+            <default>1.5</default>
+        </double>
+
+        <double>
+            <name>min_area</name>
+            <label>Minimum Area in Microns</label>
+            <description>Detect Nuclei with an area less than minimum area will be discarded</description>
+            <channel>input</channel>
+            <longflag>min_area</longflag>
+            <default>10</default>
+        </double>
+
+        <double>
+            <name>max_area</name>
+            <label>Maximum Area in Microns</label>
+            <description>Detected Nuclei with an area greater than maximum area will be discarded.</description>
+            <channel>input</channel>
+            <longflag>max_area</longflag>
+            <default>400</default>
+        </double>
+
+        <double>
+            <name>threshold</name>
+            <label>Intensity Threshold</label>
+            <description>Detected nuclei must have a mean intestity >= threshold</description>
+            <channel>input</channel>
+            <longflag>threshold</longflag>
+            <default>0.1</default>
+        </double>
+
+        <double>
+            <name>maxBackground</name>
+            <label>Maximum Background Intensity</label>
+            <description>If background radius > 0, detected nuclei on background greater than max background will be discarded.</description>
+            <channel>input</channel>
+            <longflag>bg_max</longflag>
+            <default>2</default>
+        </double>
+
+        <double>
+            <name>cellExpansion</name>
+            <label>Cell Expansion in Microns</label>
+            <description>Amount by which to expand detected nuclei to approximate the full cell area.</description>
+            <channel>input</channel>
+            <longflag>cell_expansion</longflag>
+            <default>5</default>
+        </double>
+
+        <string-enumeration>
+            <name>smoothBoundaries</name>
+            <label>Smooth Detected Nuclei Boundaries?</label>
+            <description></description>
+            <channel>input</channel>
+            <longflag>smooth</longflag>
+            <default>true</default>
+            <element>true</element>
+            <element>false</element>
+        </string-enumeration>
+
+        <string-enumeration>
+            <name>makeMeasurements</name>
+            <label>Add Default Shape and Intensity Measurements During Detection?</label>
+            <description></description>
+            <channel>input</channel>
+            <longflag>measurements</longflag>
+            <default>true</default>
+            <element>true</element>
+            <element>false</element>
+        </string-enumeration>
+
+    </parameters>
+
+</executable>

@@ -1,7 +1,10 @@
 .vscode
+.DS_Store
 
 *.txt
 
 /qpbin
 
 *.svs
+
+/ignore

@@ -54,3 +54,13 @@ Finished caching Docker image data
 - **flag/longflag vs index parameters?**
     - Mark optional parameters with `<flag></flag>` and `<longflag></longflag>`
     - Required parameters use `<index></index>`
+
+
+
+
+
+### Helpful Links from Development:
+- https://cmilab.nephrology.medicine.ufl.edu/wordpress/files/2023/10/creating-a-plugin.pdf
+- https://www.slicer.org/w/index.php?title=Documentation/Nightly/Developers/SlicerExecutionModel#XML_Schema
+- https://github.com/DigitalSlideArchive/HistomicsUI/tree/master
+- https://qupath.github.io/javadoc/docs/index.html
