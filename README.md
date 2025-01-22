@@ -9,7 +9,7 @@ To build docker image: `docker build -t qp-dsa .`
 *Command line modules are in [cli](/cli/) folder*
 
 **QuPath Module**
-- Run QuPath scripts through the DSA; *Development Documentation can be found [here](docs/QP-DSA.md)*
+- Run QuPath scripts through the DSA; *Development Documentation can be found [here](docs/QP-DSA-dev.md)*
 - QuPath Groovy scripts are uploaded to DSA and can be run on the image opened in HistomicsUI
     - All Groovy scripts should be able to accept and process the following input parameters, defined by values in the XML connected to the QuPath module *(in this order)*:
         - **input_model**: A JSON file describing, in QuPath format, the model being used in the analysis. 
@@ -23,6 +23,22 @@ To build docker image: `docker build -t qp-dsa .`
 
 ### AVALIABLE SCRIPTS FOR QUPATH MODULE
 
+**TissueDetect**
+- Create tissue mask from pixel classifier using thresholding.
+    - To run thresholder on a specific region, create an ROI by selecting the rectangle by Analysis ROI inout and draw a box over the region.
+        - The entire image is processed as a default.
+- Threshold Model File Required
+    - Created locally with standard QuPath UI. 
+        - Classify --> Pixel Classification --> Create Thresholder
+        - Thresholder file is saved in project directory
+            - ProjectFolder --> classifiers --> pixel_classifiers --> thresholder.json
+
+**CellDetection**
+- Create annotations for each cell found in a ROI.
+    - Cells are detected via nuclei.
+    - A ROI *must* be defined. The default is set to the entire image and may cause performance issues.
+- Cell Detection Model File Required
+    - Created from scratch. Keys found by running in QuPath UI and then using "Create Script".
 
 ### PRE-BUILT EXAMPLE MODULES
 
