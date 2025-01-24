@@ -4,12 +4,18 @@
 To build docker image: `docker build -t qp-dsa .`
 - to test locally run `docker run -it --entrypoint /bin/bash qp-dsa` to enter docker container. 
 
+QuPath for Linux is expected to be downloaded in the project directory *BEFORE* building Docker image.
+- QuPath Downloading Instructions: [QuPath GitHub](https://github.com/qupath/qupath/releases/tag/v0.5.1)
+- Locally saved to `qpbin` folder within base directory
+
+Upload "kaylaneal/qupath-dsa:latest" CLI to DSA.
 
 ## USAGE
 *Command line modules are in [cli](/cli/) folder*
 
 **QuPath Module**
-- Run QuPath scripts through the DSA; *Development Documentation can be found [here](docs/QP-DSA-dev.md)*
+- Run QuPath scripts through the DSA
+- *Development Documentation can be found [here](docs/QP-DSA-dev.md)*
 - QuPath Groovy scripts are uploaded to DSA and can be run on the image opened in HistomicsUI
     - All Groovy scripts should be able to accept and process the following input parameters, defined by values in the XML connected to the QuPath module *(in this order)*:
         - **input_model**: A JSON file describing, in QuPath format, the model being used in the analysis. 

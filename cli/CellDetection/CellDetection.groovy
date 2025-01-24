@@ -30,6 +30,7 @@ selectObjects(annot)
 println "Running Cell Detection"
 runPlugin('qupath.imagej.detect.cells.WatershedCellDetection', detectionModel)
 
+
 // Export Detections:
 exportAllObjectsToGeoJson(annotationPath, "FEATURE_COLLECTION")
 
@@ -41,6 +42,8 @@ println "Exporting Measurements from Cell Detection"
 def measurementPath = annotationPath - '-outputAnnotationFile.json'
 measurementPath = measurementPath.concat("-measurementsFile.tsv")
 def measurementFile = new File(measurementPath)
+saveDetectionMeasurements(measurementPath)
+
 def exporter = new MeasurementExporter()
                     .imageList([getCurrentImageName()])
                     .separator("\t")

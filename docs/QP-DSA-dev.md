@@ -29,7 +29,7 @@ The **QuPath-DSA** Plugin Dockerfile is located in the [base directory](../Docke
 
 - XML Format
     - To make parameters optional, use `<longflag>` in the variable definition. 
-    - To make parameters mandatory, use `<index>` in the variable definition. 
+    - To make parameters required, use `<index>` in the variable definition. 
     - The `<name>` flag is the argument name that can be used in the python file.
 
 - Python Script
